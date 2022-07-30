@@ -6,7 +6,7 @@ let ballPost1 = 0;
 let ballPost2 = 0;
 let ballPost3 = 0;
 const fps = 60;
-
+let startFrameTime = Date.now();
 function gameloop() {
     pen.clearRect(0, 0, width, height);
 
@@ -225,7 +225,14 @@ function gameloop() {
     if (ballPost2 == 5) {
         ballPost2 -= 5
     }
-
+    let currentFrameTime = Date.now();
+    let deltaTime = currentFrameTime - startFrameTime;
+    let actualFPS = parseInt(1000 / deltaTime);
+    pen.beginPath();
+    pen.fillStyle = "black";
+    pen.font = "10pt Arial";
+    pen.fillText("FPS: " + actualFPS, 30, 30);
+    startFrameTime = currentFrameTime;
 
 
 
